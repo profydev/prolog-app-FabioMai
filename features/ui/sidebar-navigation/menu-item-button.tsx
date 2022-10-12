@@ -21,7 +21,13 @@ export function MenuItemButton({
     <ListItem className={className}>
       <Anchor as={Button} onClick={onClick}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <Icon src={iconSrc} alt={`${text} icon`} /> {!isCollapsed && text}
+        <Icon
+          src={iconSrc}
+          alt={`${text} icon`}
+          isCollapsed={isCollapsed}
+          text={text}
+        />
+        {!isCollapsed && text}
       </Anchor>
     </ListItem>
   );
