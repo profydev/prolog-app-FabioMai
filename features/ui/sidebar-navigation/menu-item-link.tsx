@@ -33,9 +33,11 @@ export const Anchor = styled.a`
   text-decoration: none;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img<{ isCollapsed?: boolean; text?: string }>`
   width: ${space(6)};
   margin-right: ${space(3)};
+  transform: ${({ isCollapsed, text }) =>
+    isCollapsed && text === "Collapse" ? "rotate(180deg)" : ""};
 `;
 
 export function MenuItemLink({
@@ -50,7 +52,13 @@ export function MenuItemLink({
       <Link href={href} passHref>
         <Anchor>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Icon src={iconSrc} alt={`${text} icon`} /> {!isCollapsed && text}
+          <Icon
+            src={iconSrc}
+            alt={`${text} icon`}
+            isCollapsed={isCollapsed}
+            text={text}
+          />
+          {!isCollapsed && text}
         </Anchor>
       </Link>
     </ListItem>
